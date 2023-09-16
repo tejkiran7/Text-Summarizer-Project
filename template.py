@@ -1,3 +1,5 @@
+#This file will be used to create the Project structure
+
 import os
 from pathlib import Path
 import logging

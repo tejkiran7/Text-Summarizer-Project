@@ -1,7 +1,7 @@
 transformers
 transformers[sentencepiece]
 datasets
-sacrebleu #Evaluation metric for text summaraization, we use something like Row metric, inorder to use rowmetric we need sacreblue
+sacrebleu #Evaluation metric for text summarization, we use something like Row metric, inorder to use rowmetric we need sacreblue
 rouge_score
 py7zr
 pandas
