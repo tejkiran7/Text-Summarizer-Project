@@ -3,9 +3,8 @@ import urllib.request as request
 import zipfile
 from textSummarizer.logging import logger
 from textSummarizer.utils.common import get_size
-from pathlib import Path
 from textSummarizer.entity import DataIngestionConfig
-
+from pathlib import Path
 
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig):
@@ -15,7 +14,8 @@ class DataIngestion:
         if not os.path.exists(self.config.local_data_file):
             filename, headers = request.urlretrieve(
                 url = self.config.source_url,
-                filename = self.config.local_data_file
+                filename = self.config.local_data_file,
+                
             )
             logger.info(f"{filename} download! with following info: \n{headers}")
         else:
@@ -30,8 +30,10 @@ class DataIngestion:
         unzip_path = self.config.unzip_dir
         os.makedirs(unzip_path, exist_ok=True)
         try:
-            with zipfile.ZipFile(self.config.local_data_file, 'r') as zip_ref:
-                zip_ref.extractall(unzip_path)
+            # with zipfile.ZipFile(self.config.local_data_file, 'r') as zip_ref:
+            #     zip_ref.extractall(unzip_path)
+            with zipfile.ZipFile(r"C:\Users\TEJKIRAN\Downloads\summarizer-data.zip", 'r') as zip_ref:
+                zip_ref.extractall(path= r"artifacts/data_ingestion")
             print("Extraction successful.")
         except zipfile.BadZipFile:
             print("Error: The file is not a valid ZIP archive.")
@@ -39,5 +41,3 @@ class DataIngestion:
             print(f"Error: File not found at {self.config.local_data_file}.")
         except Exception as e:
             print(f"An error occurred: {str(e)}")
-
-
